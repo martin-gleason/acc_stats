@@ -1,0 +1,23 @@
+---
+title: "ACC Listener Survey"
+output: html_notebook
+---
+
+```{r, packages and connections, include = T, message= F, echo = F}
+library("tidyverse")
+library("googlesheets")
+library("kableExtra")
+
+sheets <- gs_ls()
+class(survey_key<- sheets[1, ]$sheet_key)
+
+register_survey <- gs_key(survey_key)
+survey_full <- gs_read(register_survey)
+survey_anon <- survey_full %>% select(-2)
+emails <- survey_full %>% select(2)
+
+names(survey_full)
+
+#to find the winner
+#sample_n(emails)
+```

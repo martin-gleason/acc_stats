@@ -9,7 +9,8 @@ library("googlesheets")
 library("kableExtra")
 
 sheets <- gs_ls()
-class(survey_key<- sheets[1, ]$sheet_key)
+
+survey_key<- sheets[2, ]$sheet_key #need to find a way to automate this right away. 
 
 register_survey <- gs_key(survey_key)
 survey_full <- gs_read(register_survey)
@@ -17,7 +18,7 @@ survey_anon <- survey_full %>% select(-2)
 emails <- survey_full %>% select(2)
 
 names(survey_full)
-
+nrow(survey_anon)
 #to find the winner
 #sample_n(emails)
 ```

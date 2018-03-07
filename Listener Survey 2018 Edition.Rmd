@@ -10,7 +10,7 @@ library("kableExtra")
 
 sheets <- gs_ls()
 
-survey_key<- sheets[2, ]$sheet_key #need to find a way to automate this right away. 
+survey_key<- sheets[1, ]$sheet_key #need to find a way to automate this right away. 
 
 register_survey <- gs_key(survey_key)
 survey_full <- gs_read(register_survey)

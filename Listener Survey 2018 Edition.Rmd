@@ -1,24 +1,28 @@
 ---
 title: "ACC Listener Survey"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
 ```{r, packages and connections, include = T, message= F, echo = F}
 library("tidyverse")
+library("plyr")
 library("googlesheets")
 library("kableExtra")
+source("/Users/marty/Dropbox (Personal)/Coding Projects/R/scripts/create_df.R")
+source("/Users/marty/Dropbox (Personal)/Coding Projects/R/scripts/answers_from_column.R")
 
 sheets <- gs_ls()
 
-survey_key<- sheets[1, ]$sheet_key #need to find a way to automate this right away. 
+survey_key<- "1WemMnRJphcI5BPgeSAC8wj40If0foT3BH0o-oUApj-g" #need to find a way to automate this right away. 
 
 register_survey <- gs_key(survey_key)
 survey_full <- gs_read(register_survey)
 survey_anon <- survey_full %>% select(-2)
 emails <- survey_full %>% select(2)
 
-names(survey_full)
-nrow(survey_anon)
-#to find the winner
-#sample_n(emails)
+questions <- names(survey_full)
+#to find the winner: sample_n(emails, 1)
+
 ```
